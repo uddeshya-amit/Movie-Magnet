@@ -28,4 +28,3 @@ function MovieList({movie}){
     )
 }
 export default MovieList
-
