@@ -1,5 +1,5 @@
 import star from "./assets/star.png"
-function MovieList({movie}){
+function MovieList({movie}) {
    
     return(
         <>

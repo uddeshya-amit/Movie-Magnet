@@ -3,12 +3,11 @@ import back from "./assets/back.svg"
 import star from "./assets/star.png"
 import {useEffect, useState} from "react"
 import { NavLink, useParams } from "react-router-dom"
-import {API_KEY} from "./Search"
 
 function Detail(){
     const {id} = useParams()
     const [movie, setMovie] = useState([])
-    const API = import.meta.env.VITE_API_KEY
+    const API_KEY = import.meta.env.VITE_API_KEY
 
     async function fetchData(){
         let url = `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${API_KEY}`

@@ -1,5 +1,5 @@
 
-import Search from "./Search";
+import Search from "./Home";
 import Detail from "./Details"
 import { Routes, Route } from "react-router-dom";
 function App() {
@@ -7,11 +7,9 @@ function App() {
       <div className="text-white font-mono">
         <Routes>
           <Route path="/" element={<Search /> }/>
-          <Route path="Details/:id" element={<Detail />}/>
+          <Route path="details/:id" element={<Detail />}/>
           <Route path="*" element={<Error />}/>
         </Routes>
-
-          {/*  */}
       </div>
 	);
 }
