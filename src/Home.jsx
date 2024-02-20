@@ -11,24 +11,28 @@ function Search() {
 	const [query, setQuery] = useState("");
 	const [movies, setMovies] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-
+	
 	useEffect(() => {
+		setIsLoading(true)
 		async function fetchData() {
 			const url = !query ? `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
 							:`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
 
 			try {
-				setIsLoading(true);
 				const response = await fetch(url);
 				const data = await response.json();
-				setMovies((prev) => data.results);
+				setMovies(data.results);
 			} catch (err) {
 				console.error(err);
 			} finally {
-				setTimeout(()=> setIsLoading(false),1500)	
+				setIsLoading(false)	
 			}
 		}
-		setTimeout(()=>fetchData(),1000) 
+
+		let timeOut = setTimeout(()=> {
+			fetchData()
+		}, 1000)
+		return ()=> clearTimeout(timeOut)
 	}, [query]);
 
 	return (
@@ -43,8 +47,9 @@ function Search() {
 							name=""
 							id=""
 							placeholder="Search movie..."
-							onChange={(e) => setQuery(e.target.value)}
 							value={query}
+							onChange={(e) => setQuery(e.target.value)}
+							
 						/>
 						<img
 							className=" absolute h-4 md:h-6 top-1  ml-2 w-5"
@@ -57,13 +62,13 @@ function Search() {
 
 			<div className=" mt-10 md:mt-20 mb-10 px-24 grid gap-5 md:gap-10  md:grid-cols-3 lg:grid-cols-5 content-center justify-center ">
 				{isLoading
-					? Array(10).fill(<Loader />)
+					? Array(15).fill(<Loader />)
 					: movies
 							.filter((movie) => movie.poster_path)
 							.map((movie) => (
 								<NavLink to={`Details/${movie.id}`}>
-									<MovieList movie={movie} key={movie.id} />
-								</NavLink>
+									<MovieList key={movie.id} movie={movie}  />
+								</NavLink>	
 							))}
 			</div>
 		</div>

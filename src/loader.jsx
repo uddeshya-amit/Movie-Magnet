@@ -1,9 +1,9 @@
 function Loader() {
 	return (
-		<div className="w-52 mt-10 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
-			<div className="flex items-center justify-center h-40 w- mb-4 bg-gray-300 rounded dark:bg-gray-700">
+		<div className="w-52 mt-10 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 bg-slate-800">
+			<div className="flex items-center justify-center h-40 w- mb-4 bg-gray-300 rounded dark:bg-gray-600">
 				<svg
-					className="w-10 h-10 text-gray-200 dark:text-gray-600"
+					className="w-10 h-10 text-gray-200 dark:text-gray-500"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="currentColor"
@@ -12,12 +12,12 @@ function Loader() {
 					<path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z" />
 				</svg>
 			</div>
-			<div className="h-3 m-auto bg-gray-200 rounded-full dark:bg-gray-700 w-24 mb-4"></div>
+			<div className="h-3 m-auto bg-gray-200 rounded-full dark:bg-gray-600 w-24 mb-4"></div>
 
 			<div className="flex items-center mt-20 boder-t-2 border-gray-500">
 				<div className=" py-5 ">
-					<div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-					<div className="w-40 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+					<div className="h-2 bg-gray-200 rounded-full dark:bg-gray-600 w-32 mb-2"></div>
+					<div className="w-40 h-2 bg-gray-200 rounded-full dark:bg-gray-600"></div>
 				</div>
 			</div>
 		</div>

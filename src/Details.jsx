@@ -9,25 +9,22 @@ function Detail(){
     const [movie, setMovie] = useState([])
     const API_KEY = import.meta.env.VITE_API_KEY
 
-    async function fetchData(){
-        let url = `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${API_KEY}`
-        
-        try {
-            const response = await fetch(url);
-            const data  = await response.json();
-            setMovie(data)
+    
+    useEffect(()=>{ 
+        async function fetchMovieDetailData(){
+            let url = `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${API_KEY}`
             
-        }catch(err){
-            console.error(err);
-        }
-     }
-        useEffect(()=>{ 
-            let timer = setTimeout(()=>{
-                fetchData() 
-            },700) 
-            return ()=> clearTimeout(timer)
-
-        }, [id])
+            try {
+                const response = await fetch(url);
+                const data  = await response.json();
+                setMovie(data)
+                
+            }catch(err){
+                console.error(err);
+            }
+         }
+        setTimeout(()=>fetchMovieDetailData(),500) 
+    }, [id])
 
         
 
