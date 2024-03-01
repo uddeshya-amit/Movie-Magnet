@@ -11,6 +11,7 @@ function Detail(){
 
     
     useEffect(()=>{ 
+        document.title = "Details"
         async function fetchMovieDetailData(){
             let url = `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=${API_KEY}`
             
@@ -21,12 +22,11 @@ function Detail(){
                 
             }catch(err){
                 console.error(err);
-            }
+            }           
          }
-        setTimeout(()=>fetchMovieDetailData(),500) 
+        setTimeout(()=>fetchMovieDetailData(),500)  
     }, [id])
-
-        
+    document.title = movie.title
 
     return(
         <div className=" h-screen w-screen overflow-hidden bg-stone-800">

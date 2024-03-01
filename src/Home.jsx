@@ -6,33 +6,34 @@ import Loader from "./loader";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-
 function Search() {
 	const [query, setQuery] = useState("");
 	const [movies, setMovies] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	
+
 	useEffect(() => {
-		setIsLoading(true)
 		async function fetchData() {
-			const url = !query ? `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
-							:`https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
+			const url = !query
+				? `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
+				: `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
 
 			try {
+				setIsLoading(true);
 				const response = await fetch(url);
 				const data = await response.json();
 				setMovies(data.results);
 			} catch (err) {
 				console.error(err);
 			} finally {
-				setIsLoading(false)	
+				setIsLoading(false);
+				document.title = "Movie Magnet";
 			}
 		}
 
-		let timeOut = setTimeout(()=> {
-			fetchData()
-		}, 1000)
-		return ()=> clearTimeout(timeOut)
+		let timeOut = setTimeout(() => {
+			fetchData();
+		}, 1000);
+		return () => clearTimeout(timeOut);
 	}, [query]);
 
 	return (
@@ -49,7 +50,6 @@ function Search() {
 							placeholder="Search movie..."
 							value={query}
 							onChange={(e) => setQuery(e.target.value)}
-							
 						/>
 						<img
 							className=" absolute h-4 md:h-6 top-1  ml-2 w-5"
@@ -67,8 +67,8 @@ function Search() {
 							.filter((movie) => movie.poster_path)
 							.map((movie) => (
 								<NavLink to={`Details/${movie.id}`}>
-									<MovieList key={movie.id} movie={movie}  />
-								</NavLink>	
+									<MovieList key={movie.id} movie={movie} />
+								</NavLink>
 							))}
 			</div>
 		</div>
