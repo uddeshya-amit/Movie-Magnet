@@ -1,8 +1,11 @@
-# React + Vite
+# MovieDB React Web App
+Welcome to the MovieDB React Web App! This web application allows users to browse the latest movies and search for specific movies using the MovieDB API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+- Browse the latest movies: Get access to the latest movies with details like title, release date, overview, and rating.
+- Search for movies: Use the search feature to find specific movies by title.
+## Technologies Used
+- React: A JavaScript library for building user interfaces.
+- MovieDB API: A comprehensive database of movies and TV shows, providing access to movie information.
+### Check this out here...
+[Live Website](https://movie-magnet-rust.vercel.app/)
