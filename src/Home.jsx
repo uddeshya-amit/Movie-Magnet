@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import icon from "./assets/search.svg";
+import Lottie from "lottie-react";
+import anime from "./assets/anime.json";
 import MovieList from "./MovieList";
 import { NavLink } from "react-router-dom";
 import Loader from "./loader";
@@ -10,24 +13,27 @@ function Search() {
 	const [query, setQuery] = useState("");
 	const [movies, setMovies] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [iserror, setError] = useState(false);
 
 	useEffect(() => {
-		async function fetchData() {
+		function fetchData() {
+			setIsLoading(true);
 			const url = !query
 				? `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
 				: `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`;
 
-			try {
-				setIsLoading(true);
-				const response = await fetch(url);
-				const data = await response.json();
-				setMovies(data.results);
-			} catch (err) {
-				console.error(err);
-			} finally {
-				setIsLoading(false);
-				document.title = "Movie Magnet";
-			}
+			axios
+				.get(url)
+				.then(function (response) {
+					setMovies(response.data.results);
+				})
+				.catch(function (error) {
+					setError(true);
+				})
+				.finally(function () {
+					setIsLoading(false);
+					document.title = "Movie Magnet";
+				});
 		}
 
 		let timeOut = setTimeout(() => {
@@ -71,6 +77,11 @@ function Search() {
 								</NavLink>
 							))}
 			</div>
+			{iserror || movies === null ? (
+				<div className="flex items-center justify-center">
+					<Lottie animationData={anime} className="w-72 h-72 m-auto"></Lottie>
+				</div>
+			) : null}
 		</div>
 	);
 }
